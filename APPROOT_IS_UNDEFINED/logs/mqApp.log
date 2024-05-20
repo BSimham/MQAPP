@@ -1,0 +1,281 @@
+05-20-2024 06:29:46.116 DEV [StartupInfoLogger.java:logStarting:50]	1 [main] INFO  c.example.mq.mqApp.MqAppApplication    mqApp  - Starting MqAppApplication using Java 17.0.11 with PID 11032 (C:\Users\DE\OneDrive\Documents\mq\mqApp\bin\main started by DE in C:\Users\DE\OneDrive\Documents\mq\mqApp)
+05-20-2024 06:29:46.119 DEV [SpringApplication.java:logStartupProfileInfo:654]	1 [main] INFO  c.example.mq.mqApp.MqAppApplication    mqApp  - No active profile set, falling back to 1 default profile: "default"
+05-20-2024 06:29:47.994 DEV [TomcatWebServer.java:initialize:109]	1 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer    mqApp  - Tomcat initialized with port 8080 (http)
+05-20-2024 06:29:48.007 DEV [DirectJDKLog.java:log:173]	1 [main] INFO  o.a.coyote.http11.Http11NioProtocol    mqApp  - Initializing ProtocolHandler ["http-nio-8080"]
+05-20-2024 06:29:48.010 DEV [DirectJDKLog.java:log:173]	1 [main] INFO  o.a.catalina.core.StandardService    mqApp  - Starting service [Tomcat]
+05-20-2024 06:29:48.010 DEV [DirectJDKLog.java:log:173]	1 [main] INFO  o.a.catalina.core.StandardEngine    mqApp  - Starting Servlet engine: [Apache Tomcat/10.1.20]
+05-20-2024 06:29:48.124 DEV [DirectJDKLog.java:log:173]	1 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]    mqApp  - Initializing Spring embedded WebApplicationContext
+05-20-2024 06:29:48.127 DEV [ServletWebServerApplicationContext.java:prepareWebApplicationContext:296]	1 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext    mqApp  - Root WebApplicationContext: initialization completed in 1944 ms
+05-20-2024 06:29:49.070 DEV [DirectJDKLog.java:log:173]	1 [main] INFO  o.a.coyote.http11.Http11NioProtocol    mqApp  - Starting ProtocolHandler ["http-nio-8080"]
+05-20-2024 06:29:49.110 DEV [TomcatWebServer.java:start:241]	1 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer    mqApp  - Tomcat started on port 8080 (http) with context path ''
+05-20-2024 06:29:49.126 DEV [StartupInfoLogger.java:logStarted:56]	1 [main] INFO  c.example.mq.mqApp.MqAppApplication    mqApp  - Started MqAppApplication in 3.459 seconds (process running for 4.35)
+05-20-2024 06:30:06.235 DEV [DirectJDKLog.java:log:173]	1 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]    mqApp  - Initializing Spring DispatcherServlet 'dispatcherServlet'
+05-20-2024 06:30:06.237 DEV [FrameworkServlet.java:initServletBean:532]	1 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet    mqApp  - Initializing Servlet 'dispatcherServlet'
+05-20-2024 06:30:06.238 DEV [FrameworkServlet.java:initServletBean:554]	1 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet    mqApp  - Completed initialization in 1 ms
+05-20-2024 06:30:06.328 DEV [MQController.java:mqCheck:34]	1 [http-nio-8080-exec-2] INFO  c.e.mq.mqApp.controller.MQController    mqApp  - MQService up and running
+05-20-2024 06:30:06.334 DEV [MQService.java:getSocketFactory:296]	1 [http-nio-8080-exec-2] ERROR c.example.mq.mqApp.service.MQService    mqApp  - FileNotFoundException on getSocketFactory due to {}
+java.io.FileNotFoundException: class path resource [UAT3key.jks] cannot be resolved to URL because it does not exist
+	at org.springframework.core.io.ClassPathResource.getURL(ClassPathResource.java:230)
+	at org.springframework.core.io.AbstractFileResolvingResource.getFile(AbstractFileResolvingResource.java:169)
+	at com.example.mq.mqApp.service.MQService.getSocketFactory(MQService.java:275)
+	at com.example.mq.mqApp.service.MQService.connectToQueue(MQService.java:257)
+	at com.example.mq.mqApp.controller.MQController.mqCheck(MQController.java:35)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:206)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1736)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+05-20-2024 06:30:06.338 DEV [MQService.java:getSocketFactory:304]	1 [http-nio-8080-exec-2] INFO  c.example.mq.mqApp.service.MQService    mqApp  - sslContextFactory null
+05-20-2024 06:30:06.793 DEV [MQService.java:connectToQueueManager:58]	1 [http-nio-8080-exec-2] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Connected to queue manager: QM1, true, true
+05-20-2024 06:30:06.803 DEV [MQService.java:sendMessage:128]	1 [http-nio-8080-exec-2] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Start sendMessage
+05-20-2024 06:30:06.858 DEV [MQService.java:sendMessage:151]	1 [http-nio-8080-exec-2] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Successfully sent msg
+05-20-2024 06:30:06.859 DEV [MQService.java:receiveMessage:73]	1 [http-nio-8080-exec-2] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Stsrt receive message from DEV.QUEUE.1 queue
+05-20-2024 06:30:06.875 DEV [MQService.java:receiveMessage:99]	1 [http-nio-8080-exec-2] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Recieved Reqeust - Message ID: E2ECLR2                 ,DEV.QUEUE.1
+05-20-2024 06:30:06.875 DEV [MQService.java:receiveMessage:101]	1 [http-nio-8080-exec-2] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Correlation ID: E2ECLR                  ,DEV.QUEUE.1
+05-20-2024 06:30:06.875 DEV [MQService.java:receiveMessage:102]	1 [http-nio-8080-exec-2] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Data: <?xml version="1.0"?><CLR_REQUEST><CIRCUIT_ID>W1B60748</CIRCUIT_ID><VIEW>P</VIEW><SHORT_LONG>S</SHORT_LONG><EQUIPMENT>Y</EQUIPMENT><SO_NOTES>Y</SO_NOTES><CI_NOTES>Y</CI_NOTES><CPE_NOTES>Y</CPE_NOTES><USER_ID>10.118.226.70</USER_ID><APPROVAL_LEVEL>A168</APPROVAL_LEVEL></CLR_REQUEST>,DEV.QUEUE.1
+05-20-2024 06:30:57.796 DEV [MQController.java:mqCheck:34]	1 [http-nio-8080-exec-3] INFO  c.e.mq.mqApp.controller.MQController    mqApp  - MQService up and running
+05-20-2024 06:30:57.797 DEV [MQService.java:getSocketFactory:296]	1 [http-nio-8080-exec-3] ERROR c.example.mq.mqApp.service.MQService    mqApp  - FileNotFoundException on getSocketFactory due to {}
+java.io.FileNotFoundException: class path resource [UAT3key.jks] cannot be resolved to URL because it does not exist
+	at org.springframework.core.io.ClassPathResource.getURL(ClassPathResource.java:230)
+	at org.springframework.core.io.AbstractFileResolvingResource.getFile(AbstractFileResolvingResource.java:169)
+	at com.example.mq.mqApp.service.MQService.getSocketFactory(MQService.java:275)
+	at com.example.mq.mqApp.service.MQService.connectToQueue(MQService.java:257)
+	at com.example.mq.mqApp.controller.MQController.mqCheck(MQController.java:35)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:206)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1736)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+05-20-2024 06:30:57.797 DEV [MQService.java:getSocketFactory:304]	1 [http-nio-8080-exec-3] INFO  c.example.mq.mqApp.service.MQService    mqApp  - sslContextFactory null
+05-20-2024 06:30:57.825 DEV [MQService.java:connectToQueueManager:58]	1 [http-nio-8080-exec-3] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Connected to queue manager: QM1, true, true
+05-20-2024 06:30:57.825 DEV [MQService.java:sendMessage:128]	1 [http-nio-8080-exec-3] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Start sendMessage
+05-20-2024 06:30:57.827 DEV [MQService.java:sendMessage:151]	1 [http-nio-8080-exec-3] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Successfully sent msg
+05-20-2024 06:30:57.827 DEV [MQService.java:receiveMessage:73]	1 [http-nio-8080-exec-3] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Stsrt receive message from DEV.QUEUE.1 queue
+05-20-2024 06:30:57.828 DEV [MQService.java:receiveMessage:99]	1 [http-nio-8080-exec-3] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Recieved Reqeust - Message ID: E2ECLR3                 ,DEV.QUEUE.1
+05-20-2024 06:30:57.829 DEV [MQService.java:receiveMessage:101]	1 [http-nio-8080-exec-3] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Correlation ID: E2ECLR                  ,DEV.QUEUE.1
+05-20-2024 06:30:57.829 DEV [MQService.java:receiveMessage:102]	1 [http-nio-8080-exec-3] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Data: <?xml version="1.0"?><CLR_REQUEST><CIRCUIT_ID>W1B60748</CIRCUIT_ID><VIEW>P</VIEW><SHORT_LONG>S</SHORT_LONG><EQUIPMENT>Y</EQUIPMENT><SO_NOTES>Y</SO_NOTES><CI_NOTES>Y</CI_NOTES><CPE_NOTES>Y</CPE_NOTES><USER_ID>10.118.226.70</USER_ID><APPROVAL_LEVEL>A168</APPROVAL_LEVEL></CLR_REQUEST>,DEV.QUEUE.1
+05-20-2024 06:31:32.022 DEV [StartupInfoLogger.java:logStarting:50]	1 [main] INFO  c.example.mq.mqApp.MqAppApplication    mqApp  - Starting MqAppApplication using Java 17.0.11 with PID 6924 (C:\Users\DE\OneDrive\Documents\mq\mqApp\bin\main started by DE in C:\Users\DE\OneDrive\Documents\mq\mqApp)
+05-20-2024 06:31:32.025 DEV [SpringApplication.java:logStartupProfileInfo:654]	1 [main] INFO  c.example.mq.mqApp.MqAppApplication    mqApp  - No active profile set, falling back to 1 default profile: "default"
+05-20-2024 06:31:33.414 DEV [TomcatWebServer.java:initialize:109]	1 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer    mqApp  - Tomcat initialized with port 8080 (http)
+05-20-2024 06:31:33.430 DEV [DirectJDKLog.java:log:173]	1 [main] INFO  o.a.coyote.http11.Http11NioProtocol    mqApp  - Initializing ProtocolHandler ["http-nio-8080"]
+05-20-2024 06:31:33.434 DEV [DirectJDKLog.java:log:173]	1 [main] INFO  o.a.catalina.core.StandardService    mqApp  - Starting service [Tomcat]
+05-20-2024 06:31:33.435 DEV [DirectJDKLog.java:log:173]	1 [main] INFO  o.a.catalina.core.StandardEngine    mqApp  - Starting Servlet engine: [Apache Tomcat/10.1.20]
+05-20-2024 06:31:33.546 DEV [DirectJDKLog.java:log:173]	1 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]    mqApp  - Initializing Spring embedded WebApplicationContext
+05-20-2024 06:31:33.547 DEV [ServletWebServerApplicationContext.java:prepareWebApplicationContext:296]	1 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext    mqApp  - Root WebApplicationContext: initialization completed in 1457 ms
+05-20-2024 06:31:34.465 DEV [DirectJDKLog.java:log:173]	1 [main] INFO  o.a.coyote.http11.Http11NioProtocol    mqApp  - Starting ProtocolHandler ["http-nio-8080"]
+05-20-2024 06:31:34.481 DEV [AbstractApplicationContext.java:refresh:632]	1 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext    mqApp  - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+05-20-2024 06:31:34.504 DEV [ConditionEvaluationReportLogger.java:logMessage:82]	1 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger    mqApp  - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+05-20-2024 06:31:34.537 DEV [LoggingFailureAnalysisReporter.java:report:40]	1 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter    mqApp  - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+05-20-2024 06:33:18.071 DEV [StartupInfoLogger.java:logStarting:50]	1 [main] INFO  c.example.mq.mqApp.MqAppApplication    mqApp  - Starting MqAppApplication using Java 17.0.11 with PID 10632 (C:\Users\DE\OneDrive\Documents\mq\mqApp\bin\main started by DE in C:\Users\DE\OneDrive\Documents\mq\mqApp)
+05-20-2024 06:33:18.074 DEV [SpringApplication.java:logStartupProfileInfo:654]	1 [main] INFO  c.example.mq.mqApp.MqAppApplication    mqApp  - No active profile set, falling back to 1 default profile: "default"
+05-20-2024 06:33:19.814 DEV [TomcatWebServer.java:initialize:109]	1 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer    mqApp  - Tomcat initialized with port 8080 (http)
+05-20-2024 06:33:19.863 DEV [DirectJDKLog.java:log:173]	1 [main] INFO  o.a.coyote.http11.Http11NioProtocol    mqApp  - Initializing ProtocolHandler ["http-nio-8080"]
+05-20-2024 06:33:19.874 DEV [DirectJDKLog.java:log:173]	1 [main] INFO  o.a.catalina.core.StandardService    mqApp  - Starting service [Tomcat]
+05-20-2024 06:33:19.875 DEV [DirectJDKLog.java:log:173]	1 [main] INFO  o.a.catalina.core.StandardEngine    mqApp  - Starting Servlet engine: [Apache Tomcat/10.1.20]
+05-20-2024 06:33:20.015 DEV [DirectJDKLog.java:log:173]	1 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]    mqApp  - Initializing Spring embedded WebApplicationContext
+05-20-2024 06:33:20.017 DEV [ServletWebServerApplicationContext.java:prepareWebApplicationContext:296]	1 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext    mqApp  - Root WebApplicationContext: initialization completed in 1881 ms
+05-20-2024 06:33:21.066 DEV [DirectJDKLog.java:log:173]	1 [main] INFO  o.a.coyote.http11.Http11NioProtocol    mqApp  - Starting ProtocolHandler ["http-nio-8080"]
+05-20-2024 06:33:21.113 DEV [TomcatWebServer.java:start:241]	1 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer    mqApp  - Tomcat started on port 8080 (http) with context path ''
+05-20-2024 06:33:21.126 DEV [StartupInfoLogger.java:logStarted:56]	1 [main] INFO  c.example.mq.mqApp.MqAppApplication    mqApp  - Started MqAppApplication in 3.516 seconds (process running for 4.684)
+05-20-2024 06:33:23.278 DEV [DirectJDKLog.java:log:173]	1 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]    mqApp  - Initializing Spring DispatcherServlet 'dispatcherServlet'
+05-20-2024 06:33:23.278 DEV [FrameworkServlet.java:initServletBean:532]	1 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet    mqApp  - Initializing Servlet 'dispatcherServlet'
+05-20-2024 06:33:23.279 DEV [FrameworkServlet.java:initServletBean:554]	1 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet    mqApp  - Completed initialization in 1 ms
+05-20-2024 06:33:23.377 DEV [MQController.java:mqCheck:34]	1 [http-nio-8080-exec-2] INFO  c.e.mq.mqApp.controller.MQController    mqApp  - MQService up and running
+05-20-2024 06:33:23.909 DEV [MQService.java:connectToQueueManager:58]	1 [http-nio-8080-exec-2] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Connected to queue manager: QM1, true, true
+05-20-2024 06:33:23.915 DEV [MQService.java:sendMessage:128]	1 [http-nio-8080-exec-2] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Start sendMessage
+05-20-2024 06:33:23.997 DEV [MQService.java:sendMessage:151]	1 [http-nio-8080-exec-2] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Successfully sent msg
+05-20-2024 06:33:23.997 DEV [MQService.java:receiveMessage:73]	1 [http-nio-8080-exec-2] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Stsrt receive message from DEV.QUEUE.1 queue
+05-20-2024 06:33:24.018 DEV [MQService.java:receiveMessage:99]	1 [http-nio-8080-exec-2] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Recieved Reqeust - Message ID: E2ECLR2                 ,DEV.QUEUE.1
+05-20-2024 06:33:24.022 DEV [MQService.java:receiveMessage:101]	1 [http-nio-8080-exec-2] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Correlation ID: E2ECLR                  ,DEV.QUEUE.1
+05-20-2024 06:33:24.026 DEV [MQService.java:receiveMessage:102]	1 [http-nio-8080-exec-2] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Data: <?xml version="1.0"?><CLR_REQUEST><CIRCUIT_ID>W1B60748</CIRCUIT_ID><VIEW>P</VIEW><SHORT_LONG>S</SHORT_LONG><EQUIPMENT>Y</EQUIPMENT><SO_NOTES>Y</SO_NOTES><CI_NOTES>Y</CI_NOTES><CPE_NOTES>Y</CPE_NOTES><USER_ID>10.118.226.70</USER_ID><APPROVAL_LEVEL>A168</APPROVAL_LEVEL></CLR_REQUEST>,DEV.QUEUE.1
+05-20-2024 06:47:53.065 DEV [StartupInfoLogger.java:logStarting:50]	1 [main] INFO  c.example.mq.mqApp.MqAppApplication    mqApp  - Starting MqAppApplication using Java 17.0.11 with PID 8788 (C:\Users\DE\OneDrive\Documents\mq\mqApp\bin\main started by DE in C:\Users\DE\OneDrive\Documents\mq\mqApp)
+05-20-2024 06:47:53.068 DEV [SpringApplication.java:logStartupProfileInfo:654]	1 [main] INFO  c.example.mq.mqApp.MqAppApplication    mqApp  - No active profile set, falling back to 1 default profile: "default"
+05-20-2024 06:47:54.405 DEV [TomcatWebServer.java:initialize:109]	1 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer    mqApp  - Tomcat initialized with port 8080 (http)
+05-20-2024 06:47:54.422 DEV [DirectJDKLog.java:log:173]	1 [main] INFO  o.a.coyote.http11.Http11NioProtocol    mqApp  - Initializing ProtocolHandler ["http-nio-8080"]
+05-20-2024 06:47:54.427 DEV [DirectJDKLog.java:log:173]	1 [main] INFO  o.a.catalina.core.StandardService    mqApp  - Starting service [Tomcat]
+05-20-2024 06:47:54.428 DEV [DirectJDKLog.java:log:173]	1 [main] INFO  o.a.catalina.core.StandardEngine    mqApp  - Starting Servlet engine: [Apache Tomcat/10.1.20]
+05-20-2024 06:47:54.540 DEV [DirectJDKLog.java:log:173]	1 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]    mqApp  - Initializing Spring embedded WebApplicationContext
+05-20-2024 06:47:54.542 DEV [ServletWebServerApplicationContext.java:prepareWebApplicationContext:296]	1 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext    mqApp  - Root WebApplicationContext: initialization completed in 1417 ms
+05-20-2024 06:47:55.364 DEV [DirectJDKLog.java:log:173]	1 [main] INFO  o.a.coyote.http11.Http11NioProtocol    mqApp  - Starting ProtocolHandler ["http-nio-8080"]
+05-20-2024 06:47:55.398 DEV [TomcatWebServer.java:start:241]	1 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer    mqApp  - Tomcat started on port 8080 (http) with context path ''
+05-20-2024 06:47:55.410 DEV [StartupInfoLogger.java:logStarted:56]	1 [main] INFO  c.example.mq.mqApp.MqAppApplication    mqApp  - Started MqAppApplication in 2.784 seconds (process running for 3.63)
+05-20-2024 06:47:59.632 DEV [DirectJDKLog.java:log:173]	1 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]    mqApp  - Initializing Spring DispatcherServlet 'dispatcherServlet'
+05-20-2024 06:47:59.632 DEV [FrameworkServlet.java:initServletBean:532]	1 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet    mqApp  - Initializing Servlet 'dispatcherServlet'
+05-20-2024 06:47:59.633 DEV [FrameworkServlet.java:initServletBean:554]	1 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet    mqApp  - Completed initialization in 1 ms
+05-20-2024 06:47:59.714 DEV [MQController.java:mqCheck:34]	1 [http-nio-8080-exec-1] INFO  c.e.mq.mqApp.controller.MQController    mqApp  - MQService up and running
+05-20-2024 06:48:00.219 DEV [MQService.java:connectToQueueManager:58]	1 [http-nio-8080-exec-1] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Connected to queue manager: QM1, true, true
+05-20-2024 06:48:00.229 DEV [MQService.java:sendMessage:129]	1 [http-nio-8080-exec-1] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Start sendMessage
+05-20-2024 06:48:00.285 DEV [MQService.java:sendMessage:152]	1 [http-nio-8080-exec-1] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Successfully sent msg
+05-20-2024 06:48:00.285 DEV [MQService.java:receiveMessage:74]	1 [http-nio-8080-exec-1] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Stsrt receive message from DEV.QUEUE.1 queue
+05-20-2024 06:48:00.300 DEV [MQService.java:receiveMessage:100]	1 [http-nio-8080-exec-1] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Recieved Reqeust - Message ID: E2ECLR2                 ,DEV.QUEUE.1
+05-20-2024 06:48:00.301 DEV [MQService.java:receiveMessage:102]	1 [http-nio-8080-exec-1] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Correlation ID: E2ECLR                  ,DEV.QUEUE.1
+05-20-2024 06:48:00.301 DEV [MQService.java:receiveMessage:103]	1 [http-nio-8080-exec-1] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Data: <?xml version="1.0"?><CLR_REQUEST><CIRCUIT_ID>W1B60748</CIRCUIT_ID><VIEW>P</VIEW><SHORT_LONG>S</SHORT_LONG><EQUIPMENT>Y</EQUIPMENT><SO_NOTES>Y</SO_NOTES><CI_NOTES>Y</CI_NOTES><CPE_NOTES>Y</CPE_NOTES><USER_ID>10.118.226.70</USER_ID><APPROVAL_LEVEL>A168</APPROVAL_LEVEL></CLR_REQUEST>,DEV.QUEUE.1
+05-20-2024 06:48:00.301 DEV [MQService.java:receiveMessage:74]	1 [http-nio-8080-exec-1] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Stsrt receive message from DEV.QUEUE.2 queue
+05-20-2024 06:48:00.316 DEV [MQService.java:receiveMessage:107]	1 [http-nio-8080-exec-1] INFO  c.example.mq.mqApp.service.MQService    mqApp  - No message
+05-20-2024 06:51:05.775 DEV [StartupInfoLogger.java:logStarting:50]	1 [main] INFO  c.example.mq.mqApp.MqAppApplication    mqApp  - Starting MqAppApplication using Java 17.0.11 with PID 15604 (C:\Users\DE\OneDrive\Documents\mq\mqApp\bin\main started by DE in C:\Users\DE\OneDrive\Documents\mq\mqApp)
+05-20-2024 06:51:05.778 DEV [SpringApplication.java:logStartupProfileInfo:654]	1 [main] INFO  c.example.mq.mqApp.MqAppApplication    mqApp  - No active profile set, falling back to 1 default profile: "default"
+05-20-2024 06:51:07.331 DEV [TomcatWebServer.java:initialize:109]	1 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer    mqApp  - Tomcat initialized with port 8080 (http)
+05-20-2024 06:51:07.347 DEV [DirectJDKLog.java:log:173]	1 [main] INFO  o.a.coyote.http11.Http11NioProtocol    mqApp  - Initializing ProtocolHandler ["http-nio-8080"]
+05-20-2024 06:51:07.352 DEV [DirectJDKLog.java:log:173]	1 [main] INFO  o.a.catalina.core.StandardService    mqApp  - Starting service [Tomcat]
+05-20-2024 06:51:07.352 DEV [DirectJDKLog.java:log:173]	1 [main] INFO  o.a.catalina.core.StandardEngine    mqApp  - Starting Servlet engine: [Apache Tomcat/10.1.20]
+05-20-2024 06:51:07.466 DEV [DirectJDKLog.java:log:173]	1 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]    mqApp  - Initializing Spring embedded WebApplicationContext
+05-20-2024 06:51:07.468 DEV [ServletWebServerApplicationContext.java:prepareWebApplicationContext:296]	1 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext    mqApp  - Root WebApplicationContext: initialization completed in 1633 ms
+05-20-2024 06:51:08.575 DEV [DirectJDKLog.java:log:173]	1 [main] INFO  o.a.coyote.http11.Http11NioProtocol    mqApp  - Starting ProtocolHandler ["http-nio-8080"]
+05-20-2024 06:51:08.614 DEV [TomcatWebServer.java:start:241]	1 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer    mqApp  - Tomcat started on port 8080 (http) with context path ''
+05-20-2024 06:51:08.626 DEV [StartupInfoLogger.java:logStarted:56]	1 [main] INFO  c.example.mq.mqApp.MqAppApplication    mqApp  - Started MqAppApplication in 3.293 seconds (process running for 4.111)
+05-20-2024 06:51:11.156 DEV [DirectJDKLog.java:log:173]	1 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]    mqApp  - Initializing Spring DispatcherServlet 'dispatcherServlet'
+05-20-2024 06:51:11.156 DEV [FrameworkServlet.java:initServletBean:532]	1 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet    mqApp  - Initializing Servlet 'dispatcherServlet'
+05-20-2024 06:51:11.157 DEV [FrameworkServlet.java:initServletBean:554]	1 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet    mqApp  - Completed initialization in 1 ms
+05-20-2024 06:51:11.240 DEV [MQController.java:mqCheck:34]	1 [http-nio-8080-exec-1] INFO  c.e.mq.mqApp.controller.MQController    mqApp  - MQService up and running
+05-20-2024 06:51:11.757 DEV [MQService.java:connectToQueueManager:58]	1 [http-nio-8080-exec-1] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Connected to queue manager: QM1, true, true
+05-20-2024 06:51:11.761 DEV [MQService.java:sendMessage:133]	1 [http-nio-8080-exec-1] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Start sendMessage
+05-20-2024 06:51:11.834 DEV [MQService.java:sendMessage:156]	1 [http-nio-8080-exec-1] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Successfully sent msg
+05-20-2024 06:51:11.835 DEV [MQService.java:receiveMessage:74]	1 [http-nio-8080-exec-1] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Stsrt receive message from DEV.QUEUE.1 queue
+05-20-2024 06:51:11.841 DEV [MQService.java:receiveMessage:101]	1 [http-nio-8080-exec-1] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Recieved Reqeust - Message ID: E2ECLR2                 ,DEV.QUEUE.1
+05-20-2024 06:51:11.841 DEV [MQService.java:receiveMessage:103]	1 [http-nio-8080-exec-1] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Correlation ID: E2ECLR                  ,DEV.QUEUE.1
+05-20-2024 06:51:11.841 DEV [MQService.java:receiveMessage:104]	1 [http-nio-8080-exec-1] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Data: <?xml version="1.0"?><CLR_REQUEST><CIRCUIT_ID>W1B60748</CIRCUIT_ID><VIEW>P</VIEW><SHORT_LONG>S</SHORT_LONG><EQUIPMENT>Y</EQUIPMENT><SO_NOTES>Y</SO_NOTES><CI_NOTES>Y</CI_NOTES><CPE_NOTES>Y</CPE_NOTES><USER_ID>10.118.226.70</USER_ID><APPROVAL_LEVEL>A168</APPROVAL_LEVEL></CLR_REQUEST>,DEV.QUEUE.1
+05-20-2024 06:51:11.842 DEV [MQService.java:sendMessage:133]	1 [http-nio-8080-exec-1] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Start sendMessage
+05-20-2024 06:51:11.849 DEV [MQService.java:sendMessage:156]	1 [http-nio-8080-exec-1] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Successfully sent msg
+05-20-2024 06:51:11.851 DEV [MQService.java:receiveMessage:74]	1 [http-nio-8080-exec-1] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Stsrt receive message from DEV.QUEUE.2 queue
+05-20-2024 06:51:11.858 DEV [MQService.java:receiveMessage:101]	1 [http-nio-8080-exec-1] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Recieved Reqeust - Message ID: E2ECLR3                 ,DEV.QUEUE.2
+05-20-2024 06:51:11.858 DEV [MQService.java:receiveMessage:103]	1 [http-nio-8080-exec-1] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Correlation ID: E2ECLR                  ,DEV.QUEUE.2
+05-20-2024 06:51:11.860 DEV [MQService.java:receiveMessage:104]	1 [http-nio-8080-exec-1] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Data: <?xml version="1.0"?><CLR_REQUEST><CIRCUIT_ID>W1B60748</CIRCUIT_ID><VIEW>P</VIEW><SHORT_LONG>S</SHORT_LONG><EQUIPMENT>Y</EQUIPMENT><SO_NOTES>Y</SO_NOTES><CI_NOTES>Y</CI_NOTES><CPE_NOTES>Y</CPE_NOTES><USER_ID>10.118.226.70</USER_ID><APPROVAL_LEVEL>A168</APPROVAL_LEVEL></CLR_REQUEST>,DEV.QUEUE.2
+05-20-2024 06:51:11.863 DEV [MQService.java:sendMessage:133]	1 [http-nio-8080-exec-1] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Start sendMessage
+05-20-2024 06:51:11.869 DEV [MQService.java:sendMessage:156]	1 [http-nio-8080-exec-1] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Successfully sent msg
+05-20-2024 06:54:47.768 DEV [StartupInfoLogger.java:logStarting:50]	1 [main] INFO  c.example.mq.mqApp.MqAppApplication    mqApp  - Starting MqAppApplication using Java 17.0.11 with PID 15476 (C:\Users\DE\OneDrive\Documents\mq\mqApp\bin\main started by DE in C:\Users\DE\OneDrive\Documents\mq\mqApp)
+05-20-2024 06:54:47.771 DEV [SpringApplication.java:logStartupProfileInfo:654]	1 [main] INFO  c.example.mq.mqApp.MqAppApplication    mqApp  - No active profile set, falling back to 1 default profile: "default"
+05-20-2024 06:54:49.237 DEV [TomcatWebServer.java:initialize:109]	1 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer    mqApp  - Tomcat initialized with port 8080 (http)
+05-20-2024 06:54:49.262 DEV [DirectJDKLog.java:log:173]	1 [main] INFO  o.a.coyote.http11.Http11NioProtocol    mqApp  - Initializing ProtocolHandler ["http-nio-8080"]
+05-20-2024 06:54:49.266 DEV [DirectJDKLog.java:log:173]	1 [main] INFO  o.a.catalina.core.StandardService    mqApp  - Starting service [Tomcat]
+05-20-2024 06:54:49.267 DEV [DirectJDKLog.java:log:173]	1 [main] INFO  o.a.catalina.core.StandardEngine    mqApp  - Starting Servlet engine: [Apache Tomcat/10.1.20]
+05-20-2024 06:54:49.385 DEV [DirectJDKLog.java:log:173]	1 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]    mqApp  - Initializing Spring embedded WebApplicationContext
+05-20-2024 06:54:49.387 DEV [ServletWebServerApplicationContext.java:prepareWebApplicationContext:296]	1 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext    mqApp  - Root WebApplicationContext: initialization completed in 1553 ms
+05-20-2024 06:54:50.442 DEV [DirectJDKLog.java:log:173]	1 [main] INFO  o.a.coyote.http11.Http11NioProtocol    mqApp  - Starting ProtocolHandler ["http-nio-8080"]
+05-20-2024 06:54:50.473 DEV [TomcatWebServer.java:start:241]	1 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer    mqApp  - Tomcat started on port 8080 (http) with context path ''
+05-20-2024 06:54:50.483 DEV [StartupInfoLogger.java:logStarted:56]	1 [main] INFO  c.example.mq.mqApp.MqAppApplication    mqApp  - Started MqAppApplication in 3.157 seconds (process running for 3.99)
+05-20-2024 06:54:53.316 DEV [DirectJDKLog.java:log:173]	1 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]    mqApp  - Initializing Spring DispatcherServlet 'dispatcherServlet'
+05-20-2024 06:54:53.316 DEV [FrameworkServlet.java:initServletBean:532]	1 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet    mqApp  - Initializing Servlet 'dispatcherServlet'
+05-20-2024 06:54:53.317 DEV [FrameworkServlet.java:initServletBean:554]	1 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet    mqApp  - Completed initialization in 1 ms
+05-20-2024 06:54:53.403 DEV [MQController.java:mqCheck:34]	1 [http-nio-8080-exec-2] INFO  c.e.mq.mqApp.controller.MQController    mqApp  - MQService up and running
+05-20-2024 06:54:53.984 DEV [MQService.java:connectToQueueManager:58]	1 [http-nio-8080-exec-2] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Connected to queue manager: QM1, true, true
+05-20-2024 06:54:53.988 DEV [MQService.java:sendMessage:134]	1 [http-nio-8080-exec-2] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Start sendMessage
+05-20-2024 06:54:54.085 DEV [MQService.java:sendMessage:157]	1 [http-nio-8080-exec-2] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Successfully sent msg
+05-20-2024 06:54:54.085 DEV [MQService.java:receiveMessage:74]	1 [http-nio-8080-exec-2] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Stsrt receive message from DEV.QUEUE.1 queue
+05-20-2024 06:54:54.106 DEV [MQService.java:receiveMessage:101]	1 [http-nio-8080-exec-2] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Recieved Reqeust - Message ID: E2ECLR2                 ,DEV.QUEUE.1
+05-20-2024 06:54:54.107 DEV [MQService.java:receiveMessage:103]	1 [http-nio-8080-exec-2] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Correlation ID: E2ECLR                  ,DEV.QUEUE.1
+05-20-2024 06:54:54.107 DEV [MQService.java:receiveMessage:104]	1 [http-nio-8080-exec-2] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Data: <?xml version="1.0"?><CLR_REQUEST><CIRCUIT_ID>W2B60748</CIRCUIT_ID><VIEW>P</VIEW><SHORT_LONG>S</SHORT_LONG><EQUIPMENT>Y</EQUIPMENT><SO_NOTES>Y</SO_NOTES><CI_NOTES>Y</CI_NOTES><CPE_NOTES>Y</CPE_NOTES><USER_ID>10.118.226.70</USER_ID><APPROVAL_LEVEL>A168</APPROVAL_LEVEL></CLR_REQUEST>,DEV.QUEUE.1
+05-20-2024 06:54:54.107 DEV [MQService.java:sendMessage:134]	1 [http-nio-8080-exec-2] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Start sendMessage
+05-20-2024 06:54:54.114 DEV [MQService.java:sendMessage:157]	1 [http-nio-8080-exec-2] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Successfully sent msg
+05-20-2024 06:54:54.118 DEV [MQService.java:receiveMessage:107]	1 [http-nio-8080-exec-2] INFO  c.example.mq.mqApp.service.MQService    mqApp  - getMessage.replyToQueueName): DEV.QUEUE.2                                     
+05-20-2024 06:54:54.121 DEV [MQService.java:receiveMessage:74]	1 [http-nio-8080-exec-2] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Stsrt receive message from DEV.QUEUE.2 queue
+05-20-2024 06:54:54.128 DEV [MQService.java:receiveMessage:101]	1 [http-nio-8080-exec-2] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Recieved Reqeust - Message ID: E2ECLR4                 ,DEV.QUEUE.2
+05-20-2024 06:54:54.128 DEV [MQService.java:receiveMessage:103]	1 [http-nio-8080-exec-2] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Correlation ID: E2ECLR                  ,DEV.QUEUE.2
+05-20-2024 06:54:54.129 DEV [MQService.java:receiveMessage:104]	1 [http-nio-8080-exec-2] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Data: <?xml version="1.0"?><CLR_REQUEST><CIRCUIT_ID>W1B60748</CIRCUIT_ID><VIEW>P</VIEW><SHORT_LONG>S</SHORT_LONG><EQUIPMENT>Y</EQUIPMENT><SO_NOTES>Y</SO_NOTES><CI_NOTES>Y</CI_NOTES><CPE_NOTES>Y</CPE_NOTES><USER_ID>10.118.226.70</USER_ID><APPROVAL_LEVEL>A168</APPROVAL_LEVEL></CLR_REQUEST>,DEV.QUEUE.2
+05-20-2024 06:54:54.129 DEV [MQService.java:sendMessage:134]	1 [http-nio-8080-exec-2] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Start sendMessage
+05-20-2024 06:54:54.131 DEV [MQService.java:sendMessage:157]	1 [http-nio-8080-exec-2] INFO  c.example.mq.mqApp.service.MQService    mqApp  - Successfully sent msg
+05-20-2024 06:54:54.131 DEV [MQService.java:receiveMessage:107]	1 [http-nio-8080-exec-2] INFO  c.example.mq.mqApp.service.MQService    mqApp  - getMessage.replyToQueueName): DEV.QUEUE.2                                     

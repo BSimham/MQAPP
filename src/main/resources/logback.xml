@@ -1,0 +1,24 @@
+<configuration>
+	<property resource="application.properties" />
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d{MM-dd-yyyy HH:mm:ss.SSS} ${Environment} [%F:%M:%L] ${InstanceId} [%thread] %-5level %logger{36} %X{SERVER_NAME} %X{USER} ${SERVICE_NAME} %X{TID} - %msg%n</pattern>
+		</layout>
+	</appender>
+
+	<appender name="TIME_BASED_FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${APPROOT}/logs/mqApp.log</file>
+<!-- 		<file>D:/logs/TAMicroservice.log</file>   -->
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			 <fileNamePattern>${APPROOT}/logs/mqApp.%d{yyyy-MM-dd}.log</fileNamePattern>
+<!-- 			  <fileNamePattern>D:/logs/TAMicroservice.%d{yyyy-MM-dd}.log</fileNamePattern>  -->
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d{MM-dd-yyyy HH:mm:ss.SSS} ${Environment} [%F:%M:%L]	${InstanceId} [%thread] %-5level %logger{36} %X{SERVER_NAME}  %X{USER} ${SERVICE_NAME} %X{TID} - %msg%n</pattern>
+		</layout>
+	</appender>
+	<root level="info">
+		<appender-ref ref="TIME_BASED_FILE" />
+	</root>
+</configuration>
