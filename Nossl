@@ -1,0 +1,67 @@
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+import java.security.cert.X509Certificate;
+import org.apache.axis2.client.Options;
+import org.apache.axis2.transport.http.HTTPConstants;
+import org.apache.axis2.transport.http.impl.httpclient3.HttpTransportPropertiesImpl;
+
+public class Axis2SSLDisable {
+
+    public static void disableSSLValidation() throws Exception {
+        // Create a TrustManager that trusts all certificates
+        TrustManager[] trustAllCerts = new TrustManager[]{
+            new X509TrustManager() {
+                public X509Certificate[] getAcceptedIssuers() {
+                    return null;
+                }
+
+                public void checkClientTrusted(X509Certificate[] certs, String authType) {}
+
+                public void checkServerTrusted(X509Certificate[] certs, String authType) {}
+            }
+        };
+
+        // Initialize the SSL context to ignore certificate validation
+        SSLContext sc = SSLContext.getInstance("TLS");
+        sc.init(null, trustAllCerts, new java.security.SecureRandom());
+        SSLSocketFactory sslSocketFactory = sc.getSocketFactory();
+
+        // Set the default SSL Socket Factory
+        HttpsURLConnection.setDefaultSSLSocketFactory(sslSocketFactory);
+
+        // Create a HostnameVerifier that allows any hostname
+        HostnameVerifier allHostsValid = (hostname, session) -> true;
+
+        // Set the default HostnameVerifier
+        HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
+    }
+
+    public static void configureAxis2Client(org.apache.axis2.client.ServiceClient serviceClient) {
+        // Disable SSL validation for the Axis2 client
+        Options options = serviceClient.getOptions();
+        HttpTransportPropertiesImpl.Authenticator authenticator = new HttpTransportPropertiesImpl.Authenticator();
+        authenticator.setPreemptiveAuthentication(true);
+
+        options.setProperty(HTTPConstants.CUSTOM_PROTOCOL_HANDLER, HttpsURLConnection.getDefaultSSLSocketFactory());
+        options.setProperty(HTTPConstants.AUTHENTICATE, authenticator);
+        options.setProperty(HTTPConstants.CHUNKED, "false"); // Avoid chunking issues with SSL
+    }
+
+    public static void main(String[] args) throws Exception {
+        // Disable SSL validation globally
+        disableSSLValidation();
+
+        // Initialize your Axis2 stub (Assume your stub is named MyServiceStub)
+        MyServiceStub stub = new MyServiceStub();
+
+        // Configure the Axis2 client to use disabled SSL validation
+        configureAxis2Client(stub._getServiceClient());
+
+        // Make your SOAP request
+        // Example: stub.mySoapMethod(parameters);
+    }
+}
