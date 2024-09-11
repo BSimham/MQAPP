@@ -1,0 +1,66 @@
+import org.apache.axis2.client.ServiceClient;
+import org.apache.axis2.transport.http.HTTPConstants;
+import org.apache.commons.httpclient.protocol.Protocol;
+import org.apache.commons.httpclient.protocol.ProtocolSocketFactory;
+import org.apache.commons.httpclient.protocol.SSLProtocolSocketFactory;
+
+public class Axis2DisableSSL {
+
+    public static void configureAxis2Client(ServiceClient serviceClient) {
+        try {
+            // Create a custom SSLProtocolSocketFactory to disable SSL validation
+            ProtocolSocketFactory socketFactory = new SSLProtocolSocketFactory() {
+                @Override
+                public java.net.Socket createSocket(String host, int port, java.net.InetAddress localAddress, int localPort) throws java.io.IOException {
+                    return createSocket(host, port);
+                }
+
+                @Override
+                public java.net.Socket createSocket(String host, int port) throws java.io.IOException {
+                    // Bypass SSL validation
+                    return getSocketFactory().createSocket(host, port);
+                }
+
+                private javax.net.ssl.SSLSocketFactory getSocketFactory() throws java.security.NoSuchAlgorithmException, java.security.KeyManagementException {
+                    // Create a custom trust-all SSL context
+                    javax.net.ssl.TrustManager[] trustAllCerts = new javax.net.ssl.TrustManager[]{
+                        new javax.net.ssl.X509TrustManager() {
+                            public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                                return null;
+                            }
+
+                            public void checkClientTrusted(java.security.cert.X509Certificate[] certs, String authType) {}
+
+                            public void checkServerTrusted(java.security.cert.X509Certificate[] certs, String authType) {}
+                        }
+                    };
+
+                    javax.net.ssl.SSLContext sslContext = javax.net.ssl.SSLContext.getInstance("TLS");
+                    sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
+
+                    return sslContext.getSocketFactory();
+                }
+            };
+
+            // Register the custom SSL protocol
+            Protocol customSSLProtocol = new Protocol("https", socketFactory, 443);
+            Protocol.registerProtocol("https", customSSLProtocol);
+
+            // Set the custom SSL protocol to Axis2 service client options
+            serviceClient.getOptions().setProperty(HTTPConstants.CUSTOM_PROTOCOL_HANDLER, customSSLProtocol);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) throws Exception {
+        // Initialize your Axis2 stub (Assume your stub is named MyServiceStub)
+        MyServiceStub stub = new MyServiceStub();
+
+        // Configure Axis2 client to disable SSL validation
+        configureAxis2Client(stub._getServiceClient());
+
+        // Make your SOAP request
+        // Example: stub.mySoapMethod(parameters);
+    }
+}
