@@ -1,0 +1,20 @@
+1234
+
+5
+
+<soapenv: Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://com/verizon/prism/ws" xmlns: java="java:com.verizon.prism.model">
+
+<soapenv:Header/>
+
+<soapenv:Body>
+
+cns2: getProfileoptimizationStatus xmlns:ns2="http://impl.po.dslo.assia.com"><ns2:key><ns1:type xmlns:ns1="http://model.napi.dslo.assia.com/xsd">LINE_10</ns1:type><nsi:value xmlns:nsi="http://model.napi.dslo.assia.com/xsd">47.ACGN.294648..VADI</ns1:value></ns2:key></ns2:getProfileOptimizationStatus>>
+
+</soapenv:Body>
+
+Params
+
+6 </soapenv: Envelope>
+
+
+
