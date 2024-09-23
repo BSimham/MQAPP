@@ -1,0 +1,70 @@
+	
+
+	@KafkaListener(groupId = "${kafka.groupIdConfig}", topics = "${kafka.stringTopicName}", containerFactory = "stringListenerFactory")
+	public void consume(ConsumerRecord<String, String> record, Acknowledgment acknowledgment,
+			@org.springframework.messaging.handler.annotation.Headers MessageHeaders headers, Consumer<String,String> consumer) throws Exception {
+
+		try {
+			String message = record.value();
+			LOGGER.info("Start of stringConsumer(...)");
+			LOGGER.info("Record Headers->" + record.headers());
+			record.headers().forEach(header->{
+				String key = header.key();
+				String value = new String((byte[]) header.value(),StandardCharsets.UTF_8);
+				LOGGER.info("{} : {}",key,value);			
+				
+			});
+//			LOGGER.info("Headers->" + headers);
+//			headers.forEach((key,value)->{
+//				 value = new String((byte[]) value,StandardCharsets.UTF_8);
+//				 LOGGER.info("{} : {}",key,value);
+//			});
+			
+			
+			String headerValue = new String((byte[]) headers.get("ActingWorkgroup"),StandardCharsets.UTF_8);
+			LOGGER.info("Received acting workgroup :{}",headerValue);
+			LOGGER.info("Header offset {}", headers.get("kafka_offset"));
+			LOGGER.info("Record offset {}",record.offset());
+//			LOGGER.info("Consumer record ..{}",record);
+			LOGGER.info("message  ..{}",message);
+			kafkaListener.messageListener(message, acknowledgment);
+			
+			commitOffsetAsyncWithRetry(record,acknowledgment,3,1000l);
+			LOGGER.info("End of stringConsumer(...)");
+		} catch (Exception e) {
+			e.printStackTrace();
+			LOGGER.error("Error while consuming a string message {}", e);
+			throw e;
+
+		}
+	}
+
+
+private void commitOffsetAsyncWithRetry(ConsumerRecord<String, String> record, Acknowledgment acknowledgment,
+			int maxRetries,long retryDelay) {
+		
+		
+		retryExecutor.submit(()->{
+			int retryCount = 0;
+			while(retryCount<maxRetries) {
+				try {
+					acknowledgment.acknowledge();
+					LOGGER.info("Offset commit succeeded on attempt {} for record {}",retryCount+1,record);
+					return;
+				}catch(Exception e) {
+					retryCount++;
+					if(retryCount>=maxRetries) {
+						LOGGER.info("Failed to commit offset for record {}",record);
+						return;
+					}
+					try {
+						TimeUnit.MILLISECONDS.sleep(retryDelay);
+					}catch(InterruptedException ie) {
+						Thread.currentThread().interrupt();
+					}
+				}
+			}
+		});
+	}
+
+is this good way to handle Kafka commits? how is it different from built in Acknowledgment.acknowledge?
