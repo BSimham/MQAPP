@@ -68,3 +68,16 @@ private void commitOffsetAsyncWithRetry(ConsumerRecord<String, String> record, A
 	}
 
 is this good way to handle Kafka commits? how is it different from built in Acknowledgment.acknowledge?
+
+
+
+import javax.net.ssl.KeyManager;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+
+
+import java.security.SecureRandom;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+are these packages available in all jdk 8 versions
