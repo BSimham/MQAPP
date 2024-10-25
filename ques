@@ -81,3 +81,33 @@ import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 are these packages available in all jdk 8 versions
+
+2024-10-25T09:36:38,440 ERROR [ajp-nio-127.0.0.1-8011-exec-3] (itsta.ServicePortTypeImpl.sendITSRequest:285) Error while posting  the request @ https://delphimicrosvcs.verizon.com/TAMicroService/tams/itsRequest
+java.net.ConnectException: Connection timed out (Connection timed out)
+        at java.net.PlainSocketImpl.socketConnect(Native Method) ~[?:1.8.0_401]
+        at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:476) ~[?:1.8.0_401]
+        at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:218) ~[?:1.8.0_401]
+        at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:200) ~[?:1.8.0_401]
+        at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:394) ~[?:1.8.0_401]
+        at java.net.Socket.connect(Socket.java:606) ~[?:1.8.0_401]
+        at sun.security.ssl.SSLSocketImpl.connect(SSLSocketImpl.java:303) ~[?:1.8.0_401]
+        at sun.security.ssl.BaseSSLSocketImpl.connect(BaseSSLSocketImpl.java:173) ~[?:1.8.0_401]
+        at sun.net.NetworkClient.doConnect(NetworkClient.java:180) ~[?:1.8.0_401]
+        at sun.net.www.http.HttpClient.openServer(HttpClient.java:499) ~[?:1.8.0_401]
+        at sun.net.www.http.HttpClient.openServer(HttpClient.java:594) ~[?:1.8.0_401]
+        at sun.net.www.protocol.https.HttpsClient.<init>(HttpsClient.java:263) ~[?:1.8.0_401]
+        at sun.net.www.protocol.https.HttpsClient.New(HttpsClient.java:366) ~[?:1.8.0_401]
+        at sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.getNewHttpClient(AbstractDelegateHttpsURLConnection.java:207) ~[?:1.8.0_401]
+        at sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1167) ~[?:1.8.0_401]
+        at sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1061) ~[?:1.8.0_401]
+        at sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.connect(AbstractDelegateHttpsURLConnection.java:193) ~[?:1.8.0_401]
+        at sun.net.www.protocol.http.HttpURLConnection.getOutputStream0(HttpURLConnection.java:1354) ~[?:1.8.0_401]
+        at sun.net.www.protocol.http.HttpURLConnection.getOutputStream(HttpURLConnection.java:1329) ~[?:1.8.0_401]
+        at sun.net.www.protocol.https.HttpsURLConnectionImpl.getOutputStream(HttpsURLConnectionImpl.java:264) ~[?:1.8.0_401]
+        at com.verizon.pts.itsta.ServicePortTypeImpl.sendITSRequest(ServicePortTypeImpl.java:271) ~[classes/:?]
+        at com.verizon.pts.itsta.ServicePortTypeImpl.ITSRequestTest(ServicePortTypeImpl.java:144) ~[classes/:?]
+        at com.verizon.pts.itsta.ServicePortTypeImpl.processTicket(ServicePortTypeImpl.java:94) ~[classes/:?]
+        at sun.reflect.GeneratedMethodAccessor117.invoke(Unknown Source) ~[?:?]
+        at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_401]
+        at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_401]
+        at org.apache.cxf.service.invoker.AbstractInvoker.performInvocation(AbstractInvoker.java:180) ~[cxf-2.7.3.jar:2.7.3]
