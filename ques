@@ -111,3 +111,36 @@ java.net.ConnectException: Connection timed out (Connection timed out)
         at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_401]
         at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_401]
         at org.apache.cxf.service.invoker.AbstractInvoker.performInvocation(AbstractInvoker.java:180) ~[cxf-2.7.3.jar:2.7.3]
+
+
+private ClientHttpRequestFactory clientHttpRequestFactory() {
+		ConnectionConfig connectionConfig = ConnectionConfig.custom()
+                .setConnectTimeout(Timeout.ofMilliseconds(propertyConfigBean.getTamsConnectionTimeoutInMs()))
+                .build();
+
+        // Socket timeout
+        SocketConfig socketConfig = SocketConfig.custom()
+                .setSoTimeout(Timeout.ofMilliseconds(propertyConfigBean.getTamsReadTimeoutInMs()))
+                .build();
+
+        PoolingHttpClientConnectionManager connectionManager = new PoolingHttpClientConnectionManager();
+        connectionManager.setDefaultSocketConfig(socketConfig);
+        connectionManager.setDefaultConnectionConfig(connectionConfig);
+
+        HttpClient httpClient = HttpClientBuilder.create()
+                .setConnectionManager(connectionManager)
+                .build();
+
+		HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory(httpClient);
+		factory.setConnectTimeout(propertyConfigBean.getTamsConnectionTimeoutInMs());
+		return factory;
+	}
+	
+	
+	
+	private ClientHttpRequestFactory clientHttpRequestFactory() {
+		HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
+		factory.setReadTimeout(propertyConfigBean.getTamsReadTimeoutInMs());
+		factory.setConnectTimeout(propertyConfigBean.getTamsConnectionTimeoutInMs());
+		return factory;
+	}
