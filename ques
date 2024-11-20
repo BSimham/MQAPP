@@ -241,3 +241,96 @@ public class TomcatMetricsLogger {
         }
     }
 }
+
+private String processGetConditionalTicketState(String ticketNumber, ETMSRequest etmsRequest, String sessionToken,
+			String workGroup) {
+		String etmsTktNum = ticketNumber;
+		String ticketState = "";
+		String strResponse = "";
+		ETMSResponse etmsResponse = new ETMSResponse();
+		String ticketAge = "";
+		String eRCETMSTkt = "";
+		String eRCETMSTktDate = "";
+		List<String> priorityList = null;
+		boolean isError = false;
+		DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd-hh.mm.ss.SSS");
+		LocalDateTime omDate = null;
+		LocalDateTime ercDate = null;
+
+		try {
+			ticketAge = etmsRequest.getInput().getTicketAge();
+			eRCETMSTkt = etmsRequest.getInput().geteRCETMSTkt();
+			eRCETMSTktDate = etmsRequest.getInput().geteRCETMSTktDate();
+			if (ObjectUtils.isEmpty(ticketAge)) {
+				ticketAge = conditionalTicketAge;
+			}
+			if (!ObjectUtils.isEmpty(etmsRequest.getInput().getPriorityList())) {
+				priorityList = Arrays.asList(etmsRequest.getInput().getPriorityList().split(","));
+				priorityList = priorityList.stream().map(priority -> priority.trim()).collect(Collectors.toList());
+				priorityList = priorityList.stream().filter(priority -> !ObjectUtils.isEmpty(priority))
+						.collect(Collectors.toList());
+			}
+
+			if (ticketNumber.length() != 13) {
+				LOGGER.info("VRepair ticket {} provided. Fetching corresponsing ETMS tiketNumber", ticketNumber);
+				etmsTktNum = processGetETMSTktNum(ticketNumber, sessionToken, workGroup);
+				LOGGER.info("For VRepair ticket {}, Corresponsing ETMS tiketNumber is {}", ticketNumber, etmsTktNum);
+			}
+			if (ObjectUtils.isEmpty(eRCETMSTktDate)) {
+				if (ObjectUtils.isEmpty(eRCETMSTkt)) {
+					return etmsProxyService.prepareErrorResponse(ProxyConstants.DATA_VALIDATION_EXCEPTION,
+							ProxyConstants.CONDITION_NOT_MET);
+				} else {
+					TicketHeaderMain eRCticketHeader = getTicketHeader(etmsTktNum, sessionToken, workGroup);
+					if (!ObjectUtils.isEmpty(eRCticketHeader)) {
+						eRCETMSTktDate = eRCticketHeader.getCreateDtTm();
+						if (ObjectUtils.isEmpty(eRCETMSTktDate)) {
+							isError = true;
+						}
+					} else {
+						isError = true;
+					}
+				}
+			}
+			if (!ObjectUtils.isEmpty(etmsTktNum)) {
+				TicketHeaderMain ticketHeader = getTicketHeader(etmsTktNum, sessionToken, workGroup);
+				if (!ObjectUtils.isEmpty(ticketHeader)) {
+					String omTktCreatedDate = ticketHeader.getCreateDtTm();
+					if (ObjectUtils.isEmpty(omTktCreatedDate)) {
+						isError = true;
+					} else if (!isError) {
+						omDate = LocalDateTime.parse(omTktCreatedDate, df);
+						ercDate = LocalDateTime.parse(eRCETMSTktDate, df);
+						ercDate = ercDate.minusHours(Long.parseLong(ticketAge));
+						if (ercDate.isBefore(omDate) && (ObjectUtils.isEmpty(priorityList)
+								|| priorityList.contains(ticketHeader.getPriority()))) {
+							ticketState = ticketHeader.getState();
+							etmsResponse.setTicketNum(etmsTktNum);
+							etmsResponse.setTicketState(ticketState);
+						} else {
+							isError = true;
+						}
+					}
+				} else {
+					isError = true;
+				}
+
+				if (isError) {
+					return etmsProxyService.prepareErrorResponse(ProxyConstants.DATA_VALIDATION_EXCEPTION,
+							ProxyConstants.CONDITION_NOT_MET);
+				}
+
+			} else {
+				return etmsProxyService.prepareErrorResponse(ProxyConstants.DATA_VALIDATION_EXCEPTION,
+						ProxyConstants.NO_TICKET_MSG);
+			}
+			strResponse = JAXBWrapper.marshal(etmsResponse);
+
+		} catch (Exception e) {
+			LOGGER.info("Error while processGetConditionalTicketState for ticketNumber {} , {}", ticketNumber, e);
+		}
+
+		LOGGER.info("End of processGetConditionalTicketState , Ticket State for ticket {} is {}", ticketNumber,
+				ticketState);
+		return strResponse;
+	}
